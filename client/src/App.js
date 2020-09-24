@@ -16,7 +16,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-  <pre>{data && JSON.stringify(data)}</pre>
+        <a>learn react</a>
+        <pre data-test-id='api'>{data && JSON.stringify(data)}</pre>
       </header>
     </div>
   );
