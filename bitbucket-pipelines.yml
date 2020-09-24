@@ -7,5 +7,6 @@ pipelines:
         caches:
           - node
         script:
+          - chmod +x ./build-test-api.sh
           - ./build-test-api.sh
       
