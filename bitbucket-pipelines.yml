@@ -7,6 +7,5 @@ pipelines:
         caches:
           - node
         script:
-          - yarn install --frozen-lockfile
-          - yarn test
+          - ./build-test-api.sh
       
