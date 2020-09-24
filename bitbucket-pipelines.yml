@@ -1,0 +1,12 @@
+image: mhart/alpine-node:10
+
+pipelines:
+  default:
+    - step:
+        name: Build and test
+        caches:
+          - node
+        script:
+          - yarn install --frozen-lockfile
+          - yarn test
+      
