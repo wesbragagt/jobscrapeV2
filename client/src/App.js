@@ -5,9 +5,12 @@ import './App.css';
 function App() {
   const [data, setData] = React.useState(null)
   React.useEffect(()=>{
-    fetch('https://5l4hxv6ddf.execute-api.us-east-1.amazonaws.com/dev/todos')
+    fetch('https://d11daqkyn1.execute-api.us-east-1.amazonaws.com/dev/todos', {
+      method: 'GET'
+    })
     .then(res => res.json())
     .then(res => setData(res))
+    .catch(error => console.log(error))
   }, [])
   return (
     <div className="App">

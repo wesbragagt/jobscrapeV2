@@ -4,6 +4,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   region: us-east-1
+  stage: ${opt:stage}
 
 plugins:
   - serverless-offline
@@ -12,7 +13,8 @@ functions:
   api:
     handler: src/index.handler
     events:
-      - http: ANY /
-        cors: true
+      - http:
+          method: ANY
+          path: /
+          cors: true
       - http: 'ANY {proxy+}'
-        cors: true
