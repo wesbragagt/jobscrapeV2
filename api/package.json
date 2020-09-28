@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.20.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.16.3",
@@ -8,8 +9,8 @@
   "scripts": {
     "dev": "sls offline start --port 4500",
     "test": "jest",
-    "deploy:dev": "serverless deploy --stage dev",
-    "remove:dev": "serverless remove --stage dev"
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
   },
   "devDependencies": {
     "jest": "^26.4.2",
