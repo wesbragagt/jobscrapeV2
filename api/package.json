@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "sls offline start --port 4500",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "deploy": "serverless deploy",
     "remove": "serverless remove"
   },
