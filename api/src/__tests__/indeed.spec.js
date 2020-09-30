@@ -8,5 +8,6 @@ const request = supertest(app)
 test('gets jobs from indeed', async (done)=>{
   const res = await request.get('/indeed?position=developer&location=remote')
   expect(res.status).toBe(200)
+  expect(res.body.response.length).toBeGreaterThan(0)
   done()
 }, 10000)
