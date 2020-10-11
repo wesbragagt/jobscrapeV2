@@ -1,5 +1,15 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
+
+// TODO ADD WAY TO PAGINATE
+/*
+const getFromPagination= (numPages) => {
+  if(numPages == 0)throw new Error('Invalid pagination number')
+  const pagination = (numPages - 1) * 10
+  const query = 'start=' + pagination
+  return query
+}
+*/
 /**
  * makes an http request for a page and extracts the dom elements into an object that can be traversed
  * @param {string} url 

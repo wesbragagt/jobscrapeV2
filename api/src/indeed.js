@@ -1,5 +1,6 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
+const querystring=require('querystring')
 const { findAllLinks, findAllText, mergeOn } = require('./lib/scrape')
 const scrape = async url => {
   try {
@@ -14,8 +15,9 @@ const scrape = async url => {
 }
 
 module.exports.getjobs = async function (req, res) {
+  const queries = querystring.stringify(req.query)
   const $ = await scrape(
-    `https://www.indeed.com/jobs?q=${req.query.position}&l=${req.query.location}`
+    `https://www.indeed.com/jobs?${queries}`
   )
   const jobTitles = findAllText('job', 'h2.title')($)
   const company = findAllText('company', 'span.company')($)
