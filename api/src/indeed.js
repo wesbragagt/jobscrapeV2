@@ -22,11 +22,12 @@ module.exports.getjobs = async function (req, res) {
   const jobTitles = findAllText('job', 'h2.title')($)
   const company = findAllText('company', 'span.company')($)
   const salary = findAllText('salary', 'span.salary')($)
+  const description = findAllText('description', 'div.summary')($)
+  const date = findAllText('date', 'span.date')($)
   const links = findAllLinks('link', 'a.jobtitle.turnstileLink')(
     $,
     'https://indeed.com'
   )
-  const description = findAllText('description', 'div.summary')($, 'https://indeed.com')
-  const response = mergeOn('id')(jobTitles, company, salary, links, description)
+  const response = mergeOn('id')(jobTitles, company, salary, links, description, date)
   res.send({ response, queryParams: req.query })
 }

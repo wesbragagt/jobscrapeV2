@@ -4,7 +4,7 @@
 const {scrape, findAllText, mergeOn, findAllLinks} = require('../lib/scrape')
 
 describe('scraping indeed.com', ()=>{
-  var $,jobTitles,company,salary,links,description
+  var $,jobTitles,company,salary,links,description,date
   beforeAll(async ()=>{
     $ = await scrape('https://www.indeed.com/jobs?q=developer&l=remote')
   })
@@ -35,8 +35,15 @@ describe('scraping indeed.com', ()=>{
     expect(typeof description[0].description).toBe('string')
 
   })
+  test('date posted', ()=>{
+    date = findAllText('date', 'span.date')($, 'https://indeed.com')
+    expect(date.length).toBeGreaterThan(0)
+    expect(date[0].date).toBeTruthy()
+    expect(typeof date[0].date).toBe('string')
+
+  })
   test('merges all job findings', ()=>{
-    const result = mergeOn('id')(jobTitles, company, salary, links, description)
+    const result = mergeOn('id')(jobTitles, company, salary, links, description, date)
     
     expect(result[0].id).toBeTruthy()
     expect(result[0].job).toBeTruthy()
@@ -44,6 +51,7 @@ describe('scraping indeed.com', ()=>{
     expect(result[0].salary).toBeTruthy()
     expect(result[0].link).toBeTruthy()
     expect(result[0].description).toBeTruthy()
+    expect(result[0].date).toBeTruthy()
   })
   
 })
