@@ -24,6 +24,7 @@ module.exports.getjobs = async function (req, res) {
     $,
     'https://indeed.com'
   )
-  const response = mergeOn('id')(jobTitles, company, salary, links)
+  const description = findAllText('description', 'div.summary')($, 'https://indeed.com')
+  const response = mergeOn('id')(jobTitles, company, salary, links, description)
   res.send({ response, queryParams: req.query })
 }

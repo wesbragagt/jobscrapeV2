@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+import {useIndeed} from './hooks'
 
 function App() {
-  const [data, setData] = React.useState(null)
-  React.useEffect(()=>{
-    fetch('https://d11daqkyn1.execute-api.us-east-1.amazonaws.com/dev/todos', {
-      method: 'GET'
-    })
-    .then(res => res.json())
-    .then(res => setData(res))
-    .catch(error => console.log(error))
-  }, [])
+  const [position, setPosition] = useState('')
+  const [location, setLocation] = useState('')
+  const [getJobsFromIndeed, {data, loading, error}] = useIndeed()
+  
+  function handleSubmit(e){
+    e.preventDefault()
+    const {position, location} = e.target
+    getJobsFromIndeed({position: position.value, location: location.value})
+  }
+  console.log({data})
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a>learn react</a>
-        <pre data-test-id='api'>{data && JSON.stringify(data)}</pre>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='position'>Position</label>
+          <input id='position' name='position' type='text' onChange={e => setPosition(e.target.value)} value={position}/>
+          <label htmlFor='location'>Location</label>
+          <input id='location' name='location' type='text' onChange={e => setLocation(e.target.value)}  value={location}/>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' type='submit'>Indeed</button>
+        </form>
       </header>
+      <pre style={{textAlign: 'left'}}>
+      {JSON.stringify(data, null,2)}
+      </pre>
     </div>
   );
 }
