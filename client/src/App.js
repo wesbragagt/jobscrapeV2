@@ -11,7 +11,7 @@ function App() {
     const {position, location} = e.target
     getJobsFromIndeed({position: position.value, location: location.value})
   }
-  console.log({data})
+  
   return (
     <div className="App">
       <header className="App-header">
