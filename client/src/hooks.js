@@ -29,7 +29,6 @@ export function useIndeed(){
     setLoading(true)
     try {
       const data = await getAllJobs({position, location})
-      console.log('data from request', data)
       setLoading(false)
       setData(data)
     } catch (error) {
