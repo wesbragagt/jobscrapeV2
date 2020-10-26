@@ -17,7 +17,7 @@ function Btn ({children, color, ...rest}){
   )
 }
 
-export function Card ({ data }) {
+export function Card ({ data, handleSaveJobs, handleDeleteJobs }) {
   const handleVisitLink = () => {
     window.open(data.link, "_blank")
   }
@@ -25,8 +25,9 @@ export function Card ({ data }) {
     <div className='sm:w-1/2 lg:w-1/4 h-50 rounded overflow-hidden shadow-lg py-5'>
       <div className='px-6 py-4'>
         <div className='w-full flex justify-between'>
-          <Btn color='red'>Save</Btn>
+          {handleSaveJobs && <Btn color='green' onClick={()=>handleSaveJobs(data)}>Save</Btn>}
           <Btn color='blue' onClick={handleVisitLink}>Visit</Btn>
+          {handleDeleteJobs && <Btn color='red' onClick={()=>handleDeleteJobs(data)}>Delete</Btn>}
         </div>
         <div className='font-bold text-xl mb-2'>{data.job}</div>
         <p className='text-gray-700 text-base'>{data.description}</p>

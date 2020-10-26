@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import { useIndeed } from '../hooks'
+import { useIndeed, useLocalStorage } from '../hooks'
 import {Card} from '../components/Card'
 import { Loading } from '../components/Loading'
+import { useContextStore } from '../store'
 export default function Home(){
   const [position, setPosition] = useState('')
   const [location, setLocation] = useState('')
-  const [getJobsFromIndeed, { data, loading }] = useIndeed()
-
+  const {getIndeedJobs, data, loading} = useContextStore()
+  const[saved, setSaved]=useLocalStorage('saved')
   function handleSubmit (e) {
     e.preventDefault()
     const { position, location } = e.target
-    getJobsFromIndeed({ position: position.value, location: location.value })
+    getIndeedJobs({ position: position.value, location: location.value })
+  }
+  function handleSaveJobs(job){
+    setSaved([...saved, job])
   }
   return (
     <div className='container mx-auto'>
@@ -48,7 +52,7 @@ export default function Home(){
         }
         {
           data && data.length > 0 && data.map((job, i) => (
-            <Card key={`${i}-${job.job}`} data={job}/>
+            <Card key={`${i}-${job.job}`} data={job} handleSaveJobs={handleSaveJobs}/>
           ))
         }
       </div>
