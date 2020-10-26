@@ -1,7 +1,9 @@
 /**
  * @jest-environment node
  */
-const {scrape, findAllText, mergeOn, findAllLinks} = require('../lib/scrape')
+const {scrape, findAllText, mergeOn, findAllLinks, findFullDescription} = require('../lib/scrape')
+
+
 
 describe('scraping indeed.com', ()=>{
   var $,jobTitles,company,salary,links,description,date
@@ -52,6 +54,12 @@ describe('scraping indeed.com', ()=>{
     expect(result[0].link).toBeTruthy()
     expect(result[0].description).toBeTruthy()
     expect(result[0].date).toBeTruthy()
+  })
+
+  test('finds full description', async ()=>{
+    const result = await findFullDescription('https://www.indeed.com/viewjob?jk=7704a2f9c65d5835&tk=1elet48lsp88k800&from=serp&vjs=3')
+    expect(typeof result).toBe('string')
+    expect(result.length).toBeGreaterThan(0)
   })
   
 })

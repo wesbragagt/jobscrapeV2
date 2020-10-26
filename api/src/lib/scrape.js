@@ -33,6 +33,12 @@ const scrape = async (url) => {
 const findAllText = (type, domNode) => (fn) => fn(domNode).map((i, el) => ({id: i+1, [type]: fn(el).text().trim()})).get()
 const findAllLinks = (type, domNode) => (fn, prefix) => fn(domNode).map((i, el) => ({id: i+1, [type]: prefix + fn(el).attr('href')})).get()
 
+const findFullDescription = async (url) => {
+  const $ = await scrape(url)
+  const fullDescription = $('#jobDescriptionText div').children().text()
+  return fullDescription
+}
+
 const mergeOn = (key) => (...arr) => arr.reduce((acc, cur) => {
   cur.forEach(e => {
     if(acc){
@@ -44,4 +50,5 @@ const mergeOn = (key) => (...arr) => arr.reduce((acc, cur) => {
 module.exports.scrape = scrape
 module.exports.findAllText = findAllText
 module.exports.findAllLinks = findAllLinks
+module.exports.findFullDescription = findFullDescription
 module.exports.mergeOn = mergeOn
