@@ -1,18 +1,8 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
 const querystring=require('querystring')
-const { findAllLinks, findAllText, mergeOn } = require('./lib/scrape')
-const scrape = async url => {
-  try {
-    const response = await axios.get(url)
-    return cheerio.load(response.data, {
-      normalizeWhitespace: true,
-      xmlMode: true
-    })
-  } catch (error) {
-    throw error
-  }
-}
+const { findAllLinks, findAllText, mergeOn, makeIdsForDataSet, scrape } = require('./lib/scrape')
+
 
 module.exports.getjobs = async function (req, res) {
   const queries = querystring.stringify(req.query)
@@ -28,6 +18,7 @@ module.exports.getjobs = async function (req, res) {
     $,
     'https://indeed.com'
   )
-  const response = mergeOn('id')(jobTitles, company, salary, links, description, date)
+  const mergedJobDetails = mergeOn('id')(jobTitles, company, salary, links, description, date)
+  const response = makeIdsForDataSet(mergedJobDetails)
   res.send({ response, queryParams: req.query })
 }

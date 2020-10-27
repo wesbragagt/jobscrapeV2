@@ -1,9 +1,7 @@
 /**
  * @jest-environment node
  */
-const {scrape, findAllText, mergeOn, findAllLinks, findFullDescription} = require('../lib/scrape')
-
-
+const {scrape, findAllText, mergeOn, findAllLinks, findFullDescription, makeIdsForDataSet} = require('../lib/scrape')
 
 describe('scraping indeed.com', ()=>{
   var $,jobTitles,company,salary,links,description,date
@@ -46,7 +44,6 @@ describe('scraping indeed.com', ()=>{
   })
   test('merges all job findings', ()=>{
     const result = mergeOn('id')(jobTitles, company, salary, links, description, date)
-    
     expect(result[0].id).toBeTruthy()
     expect(result[0].job).toBeTruthy()
     expect(result[0].company).toBeTruthy()
@@ -60,6 +57,22 @@ describe('scraping indeed.com', ()=>{
     const result = await findFullDescription('https://www.indeed.com/viewjob?jk=7704a2f9c65d5835&tk=1elet48lsp88k800&from=serp&vjs=3')
     expect(typeof result).toBe('string')
     expect(result.length).toBeGreaterThan(0)
+  })
+
+  test('creates unique ids for each job', ()=>{
+    const data = mergeOn('id')(jobTitles, company, salary, links, description, date)
+    const result = makeIdsForDataSet(data)
+    function isTheListUnique(arr){
+      const list = arr.map(e => e.id)
+      const uniqueList = [...new Set(list)]
+      return uniqueList.length === list.length
+    }
+    expect(result.length).toBe(data.length)
+    expect(isTheListUnique(result)).toBe(true)
+    result.forEach(el => {
+      expect(typeof el.id).toBe('string')
+    })
+
   })
   
 })

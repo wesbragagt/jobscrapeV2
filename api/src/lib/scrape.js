@@ -47,8 +47,18 @@ const mergeOn = (key) => (...arr) => arr.reduce((acc, cur) => {
   })
   return acc
 }, arr[0])
+
+const makeIdsForDataSet = (arr) => {
+  const idMaker = (string) => string && string.split('').slice(0, 5).reverse().join('').replace(/\s/gi, '')
+  
+  return arr.map(e => {
+    e.id = e.id + idMaker(e.job) + idMaker(e.company)
+    return e
+  })
+}
 module.exports.scrape = scrape
 module.exports.findAllText = findAllText
 module.exports.findAllLinks = findAllLinks
 module.exports.findFullDescription = findFullDescription
 module.exports.mergeOn = mergeOn
+module.exports.makeIdsForDataSet = makeIdsForDataSet
