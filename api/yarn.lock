@@ -1551,6 +1551,21 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+aws-sdk@^2.421.0:
+  version "2.782.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.782.0.tgz#84e22bf1bf370f702cb741b95a25356745b0a632"
+  integrity sha512-8aCZBQQoJ5dUWb0Ij8x7MwrKKuoHGF3g3EoDiRDJws/VdYSs995S0OTNX5/TwaR/ltdtBU0t+GGGTPPQFYZ1nA==
+  dependencies:
+    buffer "4.9.2"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
+
 aws-sdk@^2.624.0, aws-sdk@^2.758.0:
   version "2.759.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.759.0.tgz#de4029dd6c804dd9e5570728e9206a103ddf9935"
@@ -1953,7 +1968,7 @@ chalk@*, chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@^2.0.0, chalk@^2.0.1, chalk@^2.4.2:
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -6532,6 +6547,14 @@ serve-static@1.14.1:
     escape-html "~1.0.3"
     parseurl "~1.3.3"
     send "0.17.1"
+
+serverless-add-api-key@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/serverless-add-api-key/-/serverless-add-api-key-4.1.1.tgz#b5bf7cf4e7f2cbb026d29fa829cf7b289b3acbfc"
+  integrity sha512-uMH+AztRTOuxuA9fApfiYe8L5hbcuGWiQT9Usx7F+8nfsHj7vmS2dbWNkUwsOQwVzByuwbmqGjZwBqmQazKBnw==
+  dependencies:
+    aws-sdk "^2.421.0"
+    chalk "^2.4.1"
 
 serverless-http@^1.5.5:
   version "1.10.1"

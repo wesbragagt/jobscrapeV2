@@ -8,7 +8,7 @@ export default function Saved() {
     setValues([...saved.filter(e => e.id !== id && e.job !== job)])
   }
   return (
-    <div className='container mx-auto flex flex-wrap mb-4 p-10'>
+    <div className='container mx-auto flex flex-wrap pt-20'>
       {
           saved && saved.length > 0 && saved.map((job, i) => (
             <Card key={`${i}-${job.job}`} data={job} handleDeleteJobs={handleDeleteJobs}/>

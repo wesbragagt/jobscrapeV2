@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
+import {API_KEY, API_URL} from './constants'
 
 function mergeResponses(promises) {
   return promises.reduce((acc, data) => {
@@ -14,12 +15,17 @@ export function useIndeed(){
 
   async function getAllJobs({position, location}){
     const urls = [
-      `http://localhost:5000/dev/indeed?q=${position}&l=${location}`,
-      `http://localhost:5000/dev/indeed?q=${position}&l=${location}&start=20`,
-      `http://localhost:5000/dev/indeed?q=${position}&l=${location}&start=30`,
-      `http://localhost:5000/dev/indeed?q=${position}&l=${location}&start=40`
+      `${API_URL}/indeed?q=${position}&l=${location}`,
+      `${API_URL}/indeed?q=${position}&l=${location}&start=20`,
+      `${API_URL}/indeed?q=${position}&l=${location}&start=30`,
+      `${API_URL}/indeed?q=${position}&l=${location}&start=40`
     ]
-    return Promise.all(urls.map(u=>fetch(u)))
+    return Promise.all(urls.map(u=>fetch(u, {
+      method: 'GET',
+      headers: {
+        'x-api-key': API_KEY
+      }
+    })))
     .then(responses =>
       Promise.all(responses.map(res => res.json()))
   ).then(mergeResponses)

@@ -146,7 +146,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/jobscrape/dev/1600932073939-2020-09-24T07:21:13.939Z/jobscrape.zip"
+          "S3Key": "serverless/jobscrape/dev/1604075188670-2020-10-30T16:26:28.670Z/jobscrape.zip"
         },
         "FunctionName": "jobscrape-dev-api",
         "Handler": "src/index.handler",
@@ -164,14 +164,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionH6kA5nHQJCFJdRdJdg3tuWPk3NspfTcDyAaFHk9pCEI": {
+    "ApiLambdaVersionTtZ7VrtmUehjt5ZPZ6VvmVdsY9ywSHHa8lMe0dDzE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "Yo/zMYYl6QJQh5iu2Rjq5lHY8zReHlLKBZUX7UBwODY="
+        "CodeSha256": "V8ZH1NV85BGrND2B1wSyD4kd8fmD/BoZYWEnbNpKbkM="
       }
     },
     "ApiGatewayRestApi": {
@@ -338,7 +338,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1600932062362": {
+    "ApiGatewayDeployment1604075173322": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -399,7 +399,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionH6kA5nHQJCFJdRdJdg3tuWPk3NspfTcDyAaFHk9pCEI"
+        "Ref": "ApiLambdaVersionTtZ7VrtmUehjt5ZPZ6VvmVdsY9ywSHHa8lMe0dDzE"
       }
     },
     "ServiceEndpoint": {
