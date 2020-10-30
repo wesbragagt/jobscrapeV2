@@ -21,7 +21,7 @@ function Btn ({ children, color, disabled, ...rest }) {
 }
 
 export function Card ({ data, handleSaveJobs, handleDeleteJobs }) {
-  const [hasAdded, setHasAdded] = useState(false)
+  const [, setHasAdded] = useState(false)
   const handleVisitLink = () => {
     window.open(data.link, '_blank')
   }

@@ -11,4 +11,4 @@ echo building react app
 yarn --cwd ./client build
 
 echo deploying to netlify
-netlify deploy
+netlify deploy --prod --dir build 
