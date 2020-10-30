@@ -3,9 +3,13 @@ node_modules
 jspm_packages
 
 # Serverless directories
-.serverless.vscode
+.serverless
+.webpack
 .vscode
 .env
 
 # Local Netlify folder
 .netlify
+
+#Client
+.build
