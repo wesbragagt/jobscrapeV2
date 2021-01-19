@@ -2,17 +2,24 @@ service: jobscrape
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   region: us-east-1
   stage: dev
 
 plugins:
   - serverless-offline
   - serverless-add-api-key
-
+  - serverless-webpack
 custom:
+  webpack:
+      webpackConfig: ./webpack.config.js 
+      includeModules: true
   apiKeys:
     - name: scrapeKey
+
+# serverless optimization
+package:
+  individually: true
 
 functions:
   api:
