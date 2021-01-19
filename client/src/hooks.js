@@ -15,10 +15,10 @@ export function useIndeed(){
 
   async function getAllJobs({position, location}){
     const urls = [
-      `${API_URL}/indeed?q=${position}&l=${location}`,
-      `${API_URL}/indeed?q=${position}&l=${location}&start=20`,
-      `${API_URL}/indeed?q=${position}&l=${location}&start=30`,
-      `${API_URL}/indeed?q=${position}&l=${location}&start=40`
+      `${API_URL}indeed?q=${position}&l=${location}`,
+      `${API_URL}indeed?q=${position}&l=${location}&start=20`,
+      `${API_URL}indeed?q=${position}&l=${location}&start=30`,
+      `${API_URL}indeed?q=${position}&l=${location}&start=40`
     ]
     return Promise.all(urls.map(u=>fetch(u, {
       method: 'GET',
