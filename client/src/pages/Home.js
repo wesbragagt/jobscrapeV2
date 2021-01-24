@@ -7,13 +7,12 @@ import { SkeletonLoading } from '../components/SkeletonLoading'
 export default function Home(){
   const {data, loading} = useContextStore()
   const[saved, setSaved]=useLocalStorage('saved', [])
-  
   const renderMultiple = (componentToRender, num=10) => {
     let components = []
     for(let i = 0; i < num; i++){
       components.push(componentToRender)
     }
-    return components.map(Component => (<Component/>))
+    return components.map((Component, i) => (<Component key={i}/>))
   }
 
   const handleSaveJobs = (job) => setSaved([...saved, job])

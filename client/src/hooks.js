@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import {API_KEY, API_URL} from './constants'
+import {API_URL} from './constants'
 
 function mergeResponses(promises) {
   return promises.reduce((acc, data) => {
-    acc.push(...data.response)
+    acc.push(...data)
     return acc
   }, [])
 }
@@ -15,13 +15,10 @@ export function useIndeed(){
 
   async function getAllJobs({position, location}){
     const urls = [
-      `${API_URL}indeed?q=${position}&l=${location}`
+      `${API_URL}/indeed?q=${position}&l=${location}`
     ]
     return Promise.all(urls.map(u=>fetch(u, {
-      method: 'GET',
-      headers: {
-        'x-api-key': API_KEY
-      }
+      method: 'GET'
     })))
     .then(responses =>
       Promise.all(responses.map(res => res.json()))
@@ -30,14 +27,12 @@ export function useIndeed(){
 
   async function getRequest({position, location}){
     setLoading(true)
-    try {
-      const data = await getAllJobs({position, location})
-      setLoading(false)
+    getAllJobs({position, location})
+    .then(data => {
       setData(data)
-    } catch (error) {
       setLoading(false)
-      setError(error)
-    } 
+    })
+    .catch(err =>setError(err))
   }
   
   return [getRequest, {data, loading, error}]

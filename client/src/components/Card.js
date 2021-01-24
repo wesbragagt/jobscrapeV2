@@ -52,8 +52,8 @@ export function Card ({ data, handleSaveJobs, handleDeleteJobs }) {
             </Btn>
           )}
         </div>
-        <div className='font-bold text-xl mb-2'>{data.job}</div>
-        <p className='text-gray-700 text-base'>{data.description}</p>
+        <div className='font-bold text-xl mb-2'>{data.title}</div>
+        <p className='text-gray-700 text-base'>{data.summary}</p>
       </div>
       <div className='px-6 pt-4 pb-2'>
         <Aside>{data.company}</Aside>
