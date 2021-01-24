@@ -52,7 +52,7 @@ export function Card ({ data, handleSaveJobs, handleDeleteJobs }) {
             </Btn>
           )}
         </div>
-        <div className='font-bold text-xl mb-2'>{data.title}</div>
+        <div className='font-bold text-xl mb-2'>{data.title && data.title.replace('new', ' new')}</div>
         <p className='text-gray-700 text-base'>{data.summary}</p>
       </div>
       <div className='px-6 pt-4 pb-2'>
